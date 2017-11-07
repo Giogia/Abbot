@@ -23,6 +23,8 @@ camera.crop = (0.0, 0.0, 1.0, 1.0)
 
 camera.start_preview()
 
-time.sleep(10)
+time.sleep(3)
+
+camera.capture('camera-working.jpg')
 
 camera.stop_preview()
