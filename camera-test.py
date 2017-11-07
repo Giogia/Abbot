@@ -23,6 +23,6 @@ camera.crop = (0.0, 0.0, 1.0, 1.0)
 
 camera.start_preview()
 
-sleep(10)
+time.sleep(10)
 
 camera.stop_preview()
