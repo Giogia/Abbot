@@ -1,6 +1,6 @@
 from PIL import Image
 
-def average_image_color(image):
+def average_image_colour(image):
     width, height = image.size
     
     r_total = 0
@@ -18,12 +18,13 @@ def average_image_color(image):
 
     return (r_total/count, g_total/count, b_total/count)
 
-#image = Image.open('prova.jpg')
+#see r,g,b values
+image = Image.open('prova.jpg')
 image = image.resize((50,50))  # Small optimization
-average_color = average_image_color(image)
-print(average_color)
+average_colour = average_image_colour(image)
+print(average_colour)
 
 #display colour
 import matplotlib.pyplot as plt
-plt.imshow([[(average_color)]])
+plt.imshow([[(average_colour)]])
 plt.show
