@@ -5,24 +5,28 @@ import os
 from google.cloud import vision
 from google.cloud.vision import types
 
-# Instantiates a client
-client = vision.ImageAnnotatorClient()
+#find the labels given an image name (example.jpg)
+def find_labels(name)
 
-# The name of the image file to annotate
-file_name = os.path.join(
-    os.path.dirname(__file__),
-    'resources/wakeupcat.jpg')
+    # Instantiates a client
+    client = vision.ImageAnnotatorClient()
 
-# Loads the image into memory
-with io.open(file_name, 'rb') as image_file:
-    content = image_file.read()
+    # The name of the image file to annotate
+    file_name = os.path.join(
+        os.path.dirname(__file__),name)
 
-image = types.Image(content=content)
+    # Loads the image into memory
+    with io.open(file_name, 'rb') as image_file:
+        content = image_file.read()
 
-# Performs label detection on the image file
-response = client.label_detection(image=image)
-labels = response.label_annotations
+    image = types.Image(content=content)
 
-print('Labels:')
-for label in labels:
-    print(label.description)
+    # Performs label detection on the image file
+    response = client.label_detection(image=image)
+    labels = response.label_annotations
+
+    #print all the labels
+    #TODO set image labels
+    print('Labels:')
+    for label in labels:
+        print(label.description)
