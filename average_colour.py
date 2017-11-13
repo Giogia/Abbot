@@ -1,6 +1,8 @@
 from PIL import Image
 import matplotlib.pyplot as plt
 
+#name is the image name string as follows "example.jpg"
+
 def average_image_colour(name):
     image = Image.open(name)
     image = image.resize((50,50))  # Small optimization
@@ -23,11 +25,11 @@ def average_image_colour(name):
 
 #see r,g,b values
 def print_average_image_colour(name)
-    average_colour = average_image_colour(image)
+    average_colour = average_image_colour(name)
     print(average_colour)
 
 #display colour
 def display_average_colour(name)
-    average_colour = average_image_colour(image)
+    average_colour = average_image_colour(name)
     plt.imshow([[(average_colour)]])
     plt.show
