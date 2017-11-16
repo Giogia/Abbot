@@ -6,7 +6,7 @@ from google.cloud import vision
 from google.cloud.vision import types
 
 #find the labels given an image name (example.jpg)
-def find_labels(name)
+def find_labels(name):
 
     # Instantiates a client
     client = vision.ImageAnnotatorClient()
