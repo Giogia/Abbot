@@ -1,7 +1,7 @@
-from database import *
+from modules import *
 
-create_table()
-conn.commit()
+database.create_table()
+database.conn.commit()
 
 labels = [
     "abalone",
@@ -1668,6 +1668,7 @@ labels = [
 
 
 for label in labels:
-    insert_label(label,False,None)
-    conn.commit()
+    database.insert_label(label,False,None)
+
+database.conn.commit()
     
