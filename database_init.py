@@ -1668,7 +1668,6 @@ labels = [
 
 
 for label in labels:
-    url = "https://www.google.com/search?q="+label.replace(" ", "+")+"&source=lnms&tbm=isch"
-    insert_label(label,False,url)
+    insert_label(label,False,None)
     conn.commit()
     
