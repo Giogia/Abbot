@@ -24,12 +24,11 @@ def find_labels(name):
     # Performs label detection on the image file
     response = client.label_detection(image=image)
     labels = response.label_annotations
-
-    #print all the labels
-    #TODO set image labels
+    
     print('Labels:')
     for label in labels:
         print(label.description)
+        database.update_photo(image,label)
         
 def detect_web(name):
     """Detects web annotations given an image."""
@@ -48,12 +47,6 @@ def detect_web(name):
     response = client.web_detection(image=image)
     notes = response.web_detection
 
-    if notes.pages_with_matching_images:
-        print('\n{} Pages with matching images retrieved')
-
-        for page in notes.pages_with_matching_images:
-            print('Url   : {}'.format(page.url))
-
     if notes.full_matching_images:
         print ('\n{} Full Matches found: '.format(
                len(notes.full_matching_images)))
@@ -68,12 +61,6 @@ def detect_web(name):
         for image in notes.partial_matching_images:
             print('Url  : {}'.format(image.url))
 
-    if notes.web_entities:
-        print ('\n{} Web entities found: '.format(len(notes.web_entities)))
-
-        for entity in notes.web_entities:
-            print('Score      : {}'.format(entity.score))
-            print('Description: {}'.format(entity.description))
-    # [END migration_web_detection]
+    
 # [END def_detect_web]
           
