@@ -8,7 +8,7 @@ querycursor = conn.cursor()
 def create_table():
     querycursor.execute('''CREATE TABLE photos
                  (photo IMAGE PRIMARY KEY, label TEXT)''')
-    querycursor.execute('''CREATE TABLE discovered
+    querycursor.execute('''CREATE TABLE labels
                  (label TEXT PRIMARY KEY, found BOOLEAN, url TEXT)''')
     
 
@@ -18,12 +18,22 @@ def insert_label(label, found= False, url=None):
             VALUES (?,?,?)''',(label,found,url))
 
 # Insert a new photo
-def insert_photo(name,label= None):
-    photo ='%s.jpg' %name
+def insert_photo(photo,label= None):
     querycursor.execute('''INSERT INTO photos (photo,label)
             VALUES (?,?)''',(photo,label))
-
     
+# Update a photo label
+def update_photo(image,word):
+    querycursor.execute('''UPDATE photos
+            SET label = word
+            WHERE photo = image''')
+    
+# Update a label              
+def update_label(word,link):
+    querycursor.execute('''UPDATE labels
+            SET found = True, url = link
+            WHERE label = word''')
+            
 
 # Save (commit) the changes
 #conn.commit()
