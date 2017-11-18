@@ -7,7 +7,7 @@ querycursor = conn.cursor()
 # Create basic tables
 def create_table():
     querycursor.execute('''CREATE TABLE photos
-                 (photo TEXT PRIMARY KEY, laebl TEXT)''')
+                 (photo IMAGE PRIMARY KEY, label TEXT)''')
     querycursor.execute('''CREATE TABLE discovered
                  (label TEXT PRIMARY KEY, found BOOLEAN, url TEXT)''')
     
