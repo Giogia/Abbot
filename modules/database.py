@@ -34,6 +34,10 @@ def update_label(word,link):
             SET found = True, url = link
             WHERE label = word''')
             
+def check_label(word):
+    return querycursor.execute('''SELECT label
+            FROM labels
+            WHERE label=word''')
 
 # Save (commit) the changes
 #conn.commit()
