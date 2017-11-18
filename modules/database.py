@@ -8,14 +8,23 @@ querycursor = conn.cursor()
 def create_table():
     querycursor.execute('''CREATE TABLE photos
                  (photo IMAGE PRIMARY KEY, label TEXT)''')
+    
+    querycursor.execute('''CREATE TABLE images
+                 (image IMAGE PRIMARY KEY, url TEXT)''')
+    
     querycursor.execute('''CREATE TABLE labels
-                 (label TEXT PRIMARY KEY, found BOOLEAN, url TEXT)''')
+                 (label TEXT PRIMARY KEY, found BOOLEAN)''')
     
 
 # Insert a new label
-def insert_label(label, found= False, url=None):
-    querycursor.execute('''INSERT INTO discovered (label,found,url)
-            VALUES (?,?,?)''',(label,found,url))
+def insert_label(label, found= False):
+    querycursor.execute('''INSERT INTO labels (label,found)
+            VALUES (?,?)''',(label,found))
+    
+    # Insert a new image
+def insert_photo(image,url= None):
+    querycursor.execute('''INSERT INTO photos (image,url)
+            VALUES (?,?)''',(image,url))
 
 # Insert a new photo
 def insert_photo(photo,label= None):
