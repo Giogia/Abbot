@@ -1666,9 +1666,13 @@ labels = [
     "zebrawood",
     "zucchini"]
 
+photos=["prova.jpg","prova1.jpg","prova2.jpg","prova3.jpg"]
 
 for label in labels:
-    database.insert_label(label,False,None)
+    database.insert_label(label,False)
+
+for photo in photos:
+    database.insert_photo(photo,None)
 
 database.conn.commit()
     

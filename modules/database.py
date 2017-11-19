@@ -1,16 +1,16 @@
 import sqlite3
 
-conn = sqlite3.connect('Abbot.db')
+conn = sqlite3.connect('./Abbot.db')
 
 querycursor = conn.cursor()
 
 # Create basic tables
 def create_table():
     querycursor.execute('''CREATE TABLE photos
-                 (photo IMAGE PRIMARY KEY, label TEXT)''')
+                 (photo TEXT, label TEXT)''')
     
     querycursor.execute('''CREATE TABLE images
-                 (image IMAGE PRIMARY KEY, url TEXT)''')
+                 (photo TEXT, image TEXT)''')
     
     querycursor.execute('''CREATE TABLE labels
                  (label TEXT PRIMARY KEY, found BOOLEAN)''')
@@ -21,10 +21,10 @@ def insert_label(label, found= False):
     querycursor.execute('''INSERT INTO labels (label,found)
             VALUES (?,?)''',(label,found))
     
-    # Insert a new image
-def insert_photo(image,url= None):
-    querycursor.execute('''INSERT INTO photos (image,url)
-            VALUES (?,?)''',(image,url))
+# Insert a new image
+def insert_image(photo,image):
+    querycursor.execute('''INSERT INTO images (photo, image)
+            VALUES (?,?)''',(photo,image))
 
 # Insert a new photo
 def insert_photo(photo,label= None):
@@ -32,21 +32,74 @@ def insert_photo(photo,label= None):
             VALUES (?,?)''',(photo,label))
     
 # Update a photo label
-def update_photo(image,word):
+def update_photo(photo,label):
     querycursor.execute('''UPDATE photos
-            SET label = word
-            WHERE photo = image''')
+            SET label = ?
+            WHERE photo = ?''',(label,photo))
     
 # Update a label              
-def update_label(word,link):
+def update_label(label):
     querycursor.execute('''UPDATE labels
-            SET found = True, url = link
-            WHERE label = word''')
-            
-def check_label(word):
-    return querycursor.execute('''SELECT label
+            SET found = ?
+            WHERE label = ?''',(True,label))
+                        
+# Return true if a label exist         
+def check_label(label):
+    querycursor.execute('''SELECT *
             FROM labels
-            WHERE label=word''')
+            WHERE label=?''',(label,))
+    return querycursor.fetchone() != None
+
+# Return true if a photo has a certain label
+def check_photo_label(photo,label):
+    querycursor.execute('''SELECT *
+            FROM photos
+            WHERE photo = ? AND label = ?''',(photo,label))
+    return querycursor.fetchone() != None
+
+# Return true if a photo has a certain images
+def check_image(photo,image):
+    querycursor.execute('''SELECT *
+            FROM images
+            WHERE photo = ? AND image = ?''',(photo,image))
+    return querycursor.fetchone() != None
+
+def get_photos():
+    querycursor.execute('''SELECT photo
+            FROM photos''')
+    photos = querycursor.fetchall()
+    i = 0
+    list = []
+    for photo in photos:
+        list.append(" ".join(map(str, photo)))
+    return list
+   
+    
+
+def get_labels():
+    querycursor.execute('''SELECT label
+            FROM labels''')
+    labels = querycursor.fetchall()
+    i = 0
+    list = []
+    for label in labels:
+        list.append(" ".join(map(str, label)))
+    return list
+   
+
+def get_images():
+    querycursor.execute('''SELECT image
+            FROM images''')
+    images = querycursor.fetchall()
+    i = 0
+    list = []
+    for image in images:
+        list.append(" ".join(map(str, image)))
+    return list
+
+def delete_photo(photo):
+   querycursor.execute('''DELETE FROM photos
+            WHERE photo = ?''',(photo,))
 
 # Save (commit) the changes
 #conn.commit()

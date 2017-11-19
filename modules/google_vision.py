@@ -12,8 +12,7 @@ def find_labels(name):
     client = vision.ImageAnnotatorClient()
 
     # The name of the image file to annotate
-    file_name = os.path.join(
-        os.path.dirname(__file__),name)
+    file_name = os.path.join('/home/pi/Desktop/Abbot/resources/',name)
 
     # Loads the image into memory
     with io.open(file_name, 'rb') as image_file:
@@ -24,43 +23,39 @@ def find_labels(name):
     # Performs label detection on the image file
     response = client.label_detection(image=image)
     labels = response.label_annotations
-    
-    print('Labels:')
+   
+    list = []
     for label in labels:
-        print(label.description)
-        database.update_photo(image,label)
+        list.append("".join(map(str,label.description)))
+    return list
+    
         
 def detect_web(name):
-    """Detects web annotations given an image."""
+    
+    # Instantiates a client
     client = vision.ImageAnnotatorClient()
     
     # The name of the image file to annotate
-    file_name = os.path.join(
-        os.path.dirname(__file__),name)
+    file_name = os.path.join('/home/pi/Desktop/Abbot/resources/',name)
 
-    # [START migration_web_detection]
+    # Loads the image into memory
     with io.open(file_name, 'rb') as image_file:
         content = image_file.read()
 
     image = types.Image(content=content)
-
+    
+    # Performs web detection on the image file
     response = client.web_detection(image=image)
     notes = response.web_detection
+        
+    list = []
+    for image in notes.full_matching_images :
+        list.append("".join(str(image)))
+    for image in notes.partial_matching_images :
+        list.append("".join(str(image)))
+    return list
 
-    if notes.full_matching_images:
-        print ('\n{} Full Matches found: '.format(
-               len(notes.full_matching_images)))
-
-        for image in notes.full_matching_images:
-            print('Url  : {}'.format(image.url))
-
-    if notes.partial_matching_images:
-        print ('\n{} Partial Matches found: '.format(
-               len(notes.partial_matching_images)))
-
-        for image in notes.partial_matching_images:
-            print('Url  : {}'.format(image.url))
 
     
-# [END def_detect_web]
+
           
