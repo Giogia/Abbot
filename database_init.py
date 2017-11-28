@@ -1,4 +1,4 @@
-from modules import *
+from modules import database
 
 database.create_table()
 database.conn.commit()
