@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-from modules import *
+from modules import internet, google_vision, database
 from time import sleep
 
 
