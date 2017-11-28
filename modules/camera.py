@@ -1,16 +1,19 @@
 import time
 import picamera
+import database
 
 camera = picamera.PiCamera()
 
-def take_picture(name):
-  
+def capture():
+
+  name = time.strftime("%y%m%d_%H-%M-%S") + ".jpg"
+
   camera.start_preview()
-  
   time.sleep(1)
-  camera.capture('%s.jpg' %name)
-  
+  camera.capture("../resources"+ name)
   camera.stop_preview()
+  
+  database.insert_photo(name,None)
   
   
 

@@ -1,0 +1,10 @@
+[Unit]
+Description=Abbot Python Backend
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/home/pi/Desktop/Abbot/abbot_start.py
+
+[Install]
+WantedBy=multi-user.target

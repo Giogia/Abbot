@@ -24,7 +24,7 @@ def average_image_colour(name):
     return (r_total/count, g_total/count, b_total/count)
 
 #see r,g,b values
-def print_average_image_colour(name):
+def print_average_colour(name):
     average_colour = average_image_colour(name)
     print(average_colour)
 
@@ -33,3 +33,5 @@ def display_average_colour(name):
     average_colour = average_image_colour(name)
     plt.imshow([[(average_colour)]])
     plt.show
+
+display_average_colour("../resources/prova3.jpg")
