@@ -38,4 +38,4 @@ def set_default_settings():
   camera.crop = (0.0, 0.0, 1.0, 1.0)
   
 
-  
+camera.capture()  
