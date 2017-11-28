@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 
 from time import sleep
-from modules import accelerometer
+from modules import adxl345
 
 accelerometer = ADXL345(interrupt = True)
 
