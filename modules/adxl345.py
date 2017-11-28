@@ -9,7 +9,7 @@
 
 import RPi.GPIO as GPIO
 import smbus
-import picamera
+import camera
 from time import sleep
 
 # select the correct i2c bus for this revision of Raspberry Pi
