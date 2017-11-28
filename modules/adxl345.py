@@ -74,7 +74,7 @@ class ADXL345:
                 #print "   x = %.3fG" % ( axes['x'] )
                 #print "   y = %.3fG" % ( axes['y'] )
                 #print "   z = %.3fG" % ( axes['z'] )
-                camera.camera.capture()
+                camera.take_photo()
                 #TODO AVERAGE COLOUR LED
         self.clearInterrupt()
 

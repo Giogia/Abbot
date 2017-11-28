@@ -4,7 +4,7 @@ import database
 
 camera = picamera.PiCamera()
 
-def capture():
+def take_photo():
 
   name = time.strftime("%y%m%d_%H-%M-%S") + ".jpg"
 
@@ -38,4 +38,4 @@ def set_default_settings():
   camera.crop = (0.0, 0.0, 1.0, 1.0)
   
 
-camera.capture()  
+  
