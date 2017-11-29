@@ -21,19 +21,19 @@ def create_table():
 
         
 # Insert a new photo
-def insert_label(photo, checked= False):
+def insert_photo(photo, checked= False):
     querycursor.execute('''INSERT INTO photos (photo,checked)
             VALUES (?,?)''',(photo,checked))
  
 
 # Insert a new word
-def insert_label(word, found= False):
+def insert_word(word, found= False):
     querycursor.execute('''INSERT INTO words (word,found)
             VALUES (?,?)''',(word,found))
  
 
 # Insert a new label
-def insert_photo(photo,label):
+def insert_label(photo,label):
     querycursor.execute('''INSERT INTO labels (photo,label)
             VALUES (?,?)''',(photo,label))
   
