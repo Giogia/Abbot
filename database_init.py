@@ -3,7 +3,7 @@ from modules import database
 database.create_table()
 database.conn.commit()
 
-labels = [
+words = [
     "abalone",
     "acorn",
     "acorn squash",
@@ -1666,13 +1666,17 @@ labels = [
     "zebrawood",
     "zucchini"]
 
+for word in words:
+    database.insert_word(word,False)
+    
+database.conn.commit()
+
+
+
 photos=["example.jpg","example1.jpg","example2.jpg","example3.jpg"]
 
-for label in labels:
-    database.insert_label(label,False)
-
 for photo in photos:
-    database.insert_photo(photo,None)
+    database.insert_photo(photo,False)
 
 database.conn.commit()
     
