@@ -9,7 +9,7 @@ def take_photo():
   name = time.strftime("%y%m%d_%H-%M-%S") + ".jpg"
 
   camera.start_preview()
-  time.sleep(1)
+  time.sleep(2)
   camera.capture("resources/"+ name)
   camera.stop_preview()
 

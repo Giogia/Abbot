@@ -18,8 +18,6 @@ for photo in database.get_photos():
             database.update_photo(photo,label)
             existing = True
             break
-
-database.conn.commit()
     
     if existing == True:
         for label in itertools.islice(labels, 2):
