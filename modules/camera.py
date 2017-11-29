@@ -10,11 +10,12 @@ def take_photo():
 
   camera.start_preview()
   time.sleep(1)
-  camera.capture("../resources"+ name)
+  camera.capture("resources/"+ name)
   camera.stop_preview()
-  
-  database.insert_photo(name,None)
-  
+
+  database.insert_photo(name)
+  database.conn.commit()
+  print("photo taken")
   
 
 def set_default_settings():

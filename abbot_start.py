@@ -3,7 +3,7 @@
 from time import sleep
 from modules import adxl345
 
-accelerometer = ADXL345(interrupt = True)
+accelerometer = adxl345.ADXL345(interrupt = True)
 
 print("ready")
 #TODO green led to say it's ready
