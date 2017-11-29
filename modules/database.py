@@ -33,7 +33,7 @@ def insert_label(word, found= False):
  
 
 # Insert a new label
-def insert_photo(photo,label= None):
+def insert_photo(photo,label):
     querycursor.execute('''INSERT INTO labels (photo,label)
             VALUES (?,?)''',(photo,label))
   
@@ -49,20 +49,13 @@ def photo_checked(photo,checked=True):
     querycursor.execute('''UPDATE photos
             SET checked = ?
             WHERE photo = ?''',(checked,photo))
-
-    
-# Update a photo label
-def update_photo(photo,label):
-    querycursor.execute('''UPDATE photos
-            SET label = ?
-            WHERE photo = ?''',(label,photo))
    
 
-# Update a label              
-def update_label(label,found=True):
-    querycursor.execute('''UPDATE labels
+# set if a photo is found              
+def word_found(word,found=True):
+    querycursor.execute('''UPDATE words
             SET found = ?
-            WHERE label = ?''',(found,label))
+            WHERE word = ?''',(found,word))
    
 
 # Return true if a photo is checked
@@ -126,7 +119,8 @@ def get_labels(photo)
     for label in labels:
         list.append(" ".join(map(str, label)))
     return list
-                             
+       
+    
 def get_images():
     querycursor.execute('''SELECT image
             FROM images''')
@@ -136,6 +130,7 @@ def get_images():
         list.append(" ".join(map(str, image)))
     return list
 
+  
 def delete_photo(photo):
    querycursor.execute('''DELETE FROM photos
             WHERE photo = ?''',(photo,))
