@@ -1666,7 +1666,7 @@ labels = [
     "zebrawood",
     "zucchini"]
 
-photos=["prova.jpg","prova1.jpg","prova2.jpg","prova3.jpg"]
+photos=["example.jpg","example1.jpg","example2.jpg","example3.jpg"]
 
 for label in labels:
     database.insert_label(label,False)
