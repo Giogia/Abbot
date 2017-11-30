@@ -16,7 +16,7 @@ def create_table():
     querycursor.execute('''CREATE TABLE labels
                  (photo TEXT, label TEXT)''')
     
-     querycursor.execute('''CREATE TABLE images
+    querycursor.execute('''CREATE TABLE images
                  (photo TEXT, image TEXT)''')
 
         
@@ -51,7 +51,7 @@ def photo_checked(photo,checked=True):
             WHERE photo = ?''',(checked,photo))
    
 
-# set if a photo is found              
+# set if a word is found              
 def word_found(word,found=True):
     querycursor.execute('''UPDATE words
             SET found = ?
@@ -70,7 +70,7 @@ def check_photo(photo):
 def check_word(word):
     querycursor.execute('''SELECT *
             FROM words
-            WHERE word=?''',(label))
+            WHERE word=?''',(word,))
     return querycursor.fetchone() != None
 
 
@@ -110,7 +110,7 @@ def get_words():
     return list
    
     
-def get_labels(photo)
+def get_labels(photo):
     querycursor.execute('''SELECT label
             FROM labels
             WHERE photo = ?''',(photo))

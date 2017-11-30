@@ -1673,10 +1673,11 @@ database.conn.commit()
 
 
 
-photos=["example.jpg","example1.jpg","example2.jpg","example3.jpg"]
+photos=["example1.jpg","example2.jpg","example3.jpg"]
 
 for photo in photos:
     database.insert_photo(photo,False)
 
 database.conn.commit()
+print "database created"
     

@@ -17,17 +17,26 @@ for photo in database.get_photos():
         images = google_vision.detect_web(photo) 
         print "new photo found"
         
-    for word in words:
-        if database.check_word(label):
+    for word in labels:
+        if database.check_word(word):
+            database.word_found(word)
             existing = True
             print "existing word found"
             break
         
+    database.conn.commit()
+        
     if existing == True:
-        for label in itertools.islice(labels, 2):
+
+        new = 0
+        
+        for label in labels:
             
             if not database.check_word(label):
-                database.insert_word(label)
+                if new >= 2: 
+                    continue
+                database.insert_word(label,True)
+                new +=1
                 print "added new word: %s" % label
                 
             if not database.check_label(photo,label):
@@ -36,12 +45,14 @@ for photo in database.get_photos():
                 
         database.conn.commit()
         
-        for image in images:
+        for image in itertools.islice(images,3):
             if not database.check_image(photo,image):
                 database.insert_image(photo,image)
                 print "inserted new image"
-                
+
+        database.photo_checked(photo)       
         database.conn.commit()
+        
         
     else:
         database.delete_photo(photo)
