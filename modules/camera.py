@@ -3,6 +3,7 @@ import picamera
 import database
 
 camera = picamera.PiCamera()
+camera.set_default_settings()
 
 def take_photo():
   
