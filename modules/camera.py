@@ -5,17 +5,21 @@ import database
 camera = picamera.PiCamera()
 
 def take_photo():
-
+  
+  #name of the photo
   name = time.strftime("%y%m%d_%H-%M-%S") + ".jpg"
 
+  #capture photo
   camera.start_preview()
   time.sleep(2)
   camera.capture("resources/"+ name)
   camera.stop_preview()
+  print "%s captured" %name
 
+  #insert photo in database
   database.insert_photo(name)
   database.conn.commit()
-  print("photo taken")
+  print "%s inserted in database" %name
   
 
 def set_default_settings():
