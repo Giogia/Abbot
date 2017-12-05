@@ -145,8 +145,11 @@ while i<len(search_keyword):
         try:
             req = Request(items[k], headers={"User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"})
             response = urlopen(req,None,15)
-            output_file = open(search_keywords+"/"+search_keywords+str(k+1)+".jpg",'wb')
-            
+            if k=1:
+                output_file = open("pictures/"+search_keywords+".jpg",'wb')
+            if k>1:
+                output_file = open("pictures/"+search_keywords+str(k)+".jpg",'wb')
+                
             data = response.read()
             output_file.write(data)
             response.close();
