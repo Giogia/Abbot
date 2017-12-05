@@ -16,8 +16,8 @@ def create_table():
     querycursor.execute('''CREATE TABLE labels
                  (photo TEXT, label TEXT)''')
     
-    querycursor.execute('''CREATE TABLE images
-                 (photo TEXT, image TEXT)''')
+    """querycursor.execute('''CREATE TABLE images
+                 (photo TEXT, image TEXT)''')"""
 
         
 # Insert a new photo
@@ -39,9 +39,9 @@ def insert_label(photo,label):
   
 
 # Insert a new image
-def insert_image(photo,image):
+"""def insert_image(photo,image):
     querycursor.execute('''INSERT INTO images (photo, image)
-            VALUES (?,?)''',(photo,image))
+            VALUES (?,?)''',(photo,image))"""
 
     
 # set if a photo is checked
@@ -83,11 +83,11 @@ def check_label(photo,label):
 
 
 # Return true if a photo has a certain image
-def check_image(photo,image):
+"""def check_image(photo,image):
     querycursor.execute('''SELECT *
             FROM images
             WHERE photo = ? AND image = ?''',(photo,image))
-    return querycursor.fetchone() != None
+    return querycursor.fetchone() != None"""
 
 
 def get_photos():
@@ -121,14 +121,14 @@ def get_labels(photo):
     return list
        
     
-def get_images():
+"""def get_images():
     querycursor.execute('''SELECT image
             FROM images''')
     images = querycursor.fetchall()
     list = []
     for image in images:
         list.append(" ".join(map(str, image)))
-    return list
+    return list"""
 
   
 def delete_photo(photo):
