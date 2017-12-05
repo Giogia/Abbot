@@ -75,7 +75,7 @@ def _images_get_next_item(s):
 
 
 #Getting all links with the help of '_images_get_next_image'
-def _images_get_all_items(page):
+def _images_get_all_items(page,number_of_images):
     items = []
     while len(items)<number_of_images:
         item, end_content = _images_get_next_item(page)
@@ -87,7 +87,7 @@ def _images_get_all_items(page):
             page = page[end_content:]
     return items
 
-def scrape(search_keyword,keywords,number_of_images):
+def download_images(search_keyword,keywords,number_of_images):
     
     ############## Main Program ############
     t0 = time.time()   #start the timer
@@ -102,14 +102,14 @@ def scrape(search_keyword,keywords,number_of_images):
         search_keywords = search_keyword[i]
         search = search_keywords.replace(' ','%20')
 
-         #make a search keyword  directory
+        """#make a search keyword  directory
         try:
             os.makedirs(search_keywords)
         except OSError, e:
             if e.errno != 17:
                 raise   
             # time.sleep might help here
-            pass
+            pass"""
 
         j = 0
         while j<len(keywords):
@@ -117,7 +117,7 @@ def scrape(search_keyword,keywords,number_of_images):
             url = 'https://www.google.com/search?q=' + search + pure_keyword + '&espv=2&biw=1366&bih=667&site=webhp&source=lnms&tbm=isch&sa=X&ei=XosDVaCXD8TasATItgE&ved=0CAcQ_AUoAg'
             raw_html =  (download_page(url))
             time.sleep(0.1)
-            items = items + (_images_get_all_items(raw_html))
+            items = items + (_images_get_all_items(raw_html,number_of_images))
             j = j + 1
         #print ("Image Links = "+str(items))
         print ("Total Image Links = "+str(len(items)))
@@ -146,10 +146,7 @@ def scrape(search_keyword,keywords,number_of_images):
             try:
                 req = Request(items[k], headers={"User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"})
                 response = urlopen(req,None,15)
-                if k=1:
-                    output_file = open("pictures/"+search_keywords+".jpg",'wb')
-                if k>1:
-                    output_file = open("pictures/"+search_keywords+str(k)+".jpg",'wb')
+                output_file = open("resources/"+search_keywords+str(k+1)+".jpg",'wb')
 
                 data = response.read()
                 output_file.write(data)
@@ -185,7 +182,7 @@ def scrape(search_keyword,keywords,number_of_images):
     #----End of the main program ----#
 
 
-# In[ ]:
+
 
 
 
