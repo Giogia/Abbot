@@ -1,7 +1,7 @@
 import os
 from modules import database
 
-database.create_table()
+"""database.create_table()
 database.conn.commit()
 
 words = [
@@ -1647,4 +1647,6 @@ for photo in photos:
 
 database.conn.commit()
 print "database created"
+"""
+os.listdir(resources)
     
