@@ -10,6 +10,7 @@ import os
 internet.wait_for_internet_connection()
 print "connection is up, updating database"
 
+
 for photo in database.get_photos():
     
     existing = False

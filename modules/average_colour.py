@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 #name is the image name string as follows "example.jpg"
 
 def average_image_colour(name):
-    image = Image.open(name)
+    image = Image.open("resources/"+name)
     image = image.resize((50,50))  # Small optimization
     width, height = image.size
     
@@ -21,7 +21,7 @@ def average_image_colour(name):
             b_total += b
             count += 1
 
-    return (r_total/count, g_total/count, b_total/count)
+    return (g_total/count, r_total/count, b_total/count) #neopixel are grb
 
 #see r,g,b values
 def print_average_colour(name):
@@ -34,4 +34,3 @@ def display_average_colour(name):
     plt.imshow([[(average_colour)]])
     plt.show
 
-display_average_colour("../resources/prova3.jpg")

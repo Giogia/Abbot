@@ -162,19 +162,24 @@ def colorWipe(G,R,B,W):
         strip.setPixelColorRGB(0,G,R,B,W)
 	strip.setBrightness(100)
 	strip.show()
-		
-def waveColorWipe(G,R,B,W):
+
+def waveColorUp(G,R,B,W):
         strip.setPixelColorRGB(0,G,R,B,W)
-        for i in range(3):
-                for j in range(0,255):
-                        strip.setBrightness(j)
-                        strip.show()
-                        time.sleep(0.001)
-                time.sleep(0.01)
-                for j in range(0,255):
-                        strip.setBrightness(255-j)
-                        strip.show()
-                        time.sleep(0.001)
+        for j in range(0,255):
+                strip.setBrightness(j)
+                strip.show()
+                time.sleep(0.002)
+                
+def waveColorDown():
+        for j in range(0,255):
+                strip.setBrightness(255-j)
+                strip.show()
+                time.sleep(0.002)
+		
+def waveColorWipe(G,R,B,W,number_of_waves):
+        waveColorUp(G,R,B,W)
+        time.sleep(0.01)
+        waveColorDown()
 
                 
 	

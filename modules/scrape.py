@@ -146,7 +146,7 @@ def download_images(search_keyword,keywords,number_of_images):
             try:
                 req = Request(items[k], headers={"User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"})
                 response = urlopen(req,None,15)
-                output_file = open("resources/"+search_keywords+str(k+1)+".jpg",'wb')
+                output_file = open("pictures/"+search_keywords+str(k+1)+".jpg",'wb')
 
                 data = response.read()
                 output_file.write(data)

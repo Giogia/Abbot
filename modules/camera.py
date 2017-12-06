@@ -1,9 +1,10 @@
 import time
 import picamera
-import database
+import database, average_colour, neopixel
+
 
 camera = picamera.PiCamera()
-camera.set_default_settings()
+
 
 def take_photo():
   
@@ -16,11 +17,14 @@ def take_photo():
   camera.capture("resources/"+ name)
   camera.stop_preview()
   print "%s captured" %name
+  neopixel.waveColor(0,0,0,255,3)
 
   #insert photo in database
   database.insert_photo(name)
   database.conn.commit()
   print "%s inserted in database" %name
+  colour = average_image_colour(name)
+  neopixel.waveColorWipe(colour,3)
   
 
 def set_default_settings():
@@ -43,5 +47,5 @@ def set_default_settings():
   camera.vflip = True #originally false
   camera.crop = (0.0, 0.0, 1.0, 1.0)
   
-
+set_default_settings()
   
