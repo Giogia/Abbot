@@ -144,6 +144,14 @@ class Adafruit_NeoPixel(object):
 		"""Get the 24-bit RGB color value for the LED at position n."""
 		return self._led_data[n]
 	
+	# Define functions which animate LEDs in various ways.
+def colorWipe(strip, color, wait_ms=50):
+	"""Wipe color across display a pixel at a time."""
+	for i in range(strip.numPixels()):
+		strip.setPixelColor(i, color)
+		strip.show()
+		time.sleep(wait_ms/1000.0)
+	
 	
 	# Main program logic follows:
 if __name__ == '__main__':
