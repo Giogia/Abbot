@@ -1,13 +1,14 @@
 #!/usr/bin/env python2
 
 from time import sleep
-from modules import adxl345
+from modules import adxl345, neopixel
 
 accelerometer = adxl345.ADXL345(interrupt = True)
 
 print "ready"
-#TODO green led for 1 second to say it's ready
-#TODO white led to say it's working
+neopixel.colorWipe(0,255,0,255)
+sleep(0.5)
+neopixel.colorWipe(0,0,0,255)
 
 try:
   while True:
