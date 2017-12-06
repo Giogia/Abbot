@@ -1,5 +1,6 @@
 from PIL import Image
 import matplotlib.pyplot as plt
+import colorsys
 
 #name is the image name string as follows "example.jpg"
 
@@ -21,9 +22,12 @@ def average_image_colour(name):
             b_total += b
             count += 1
 
-    return (g_total/count, r_total/count, b_total/count) #neopixel are grb
+    hsv = colorsys.rgb_to_hsv(r_total,g_total,b_total)
+    hsv[1] = 1 #(hope)fully saturated
+    rgb = colorsys.hsv_to_rgb(hsv)
+    return (rgb[1], rgb[0], rgb[2]) #see r,g,b values
 
-#see r,g,b values
+
 def print_average_colour(name):
     average_colour = average_image_colour(name)
     print(average_colour)

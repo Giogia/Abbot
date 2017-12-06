@@ -66,18 +66,17 @@ class ADXL345:
 
     def handleInterrupt(self, channel):
         axes = self.getAxes(True)
-        if(axes['y'] > 1 or axes['z']> 1):
-            sleep(0.5)
-            if(axes['y'] > 1.7 or axes['z']> 1.7):
-                sleep(0.3)
-                if(axes['y'] > 1 or axes['z']> 1):
+        if(axes['x'] > 0.8 or axes['z']> 1):
+            sleep(0.3)
+            if(axes['x'] > 1.8 or axes['z']> 1.7):
+                sleep(0.5)
+                if(axes['x'] > 0.8 or axes['z']> 1):
                     #TODO WHITE LED TO SAY ITS WORKING
                     #print "ADXL345 on address 0x%x:" % (self.address)
                     #print "   x = %.3fG" % ( axes['x'] )
                     #print "   y = %.3fG" % ( axes['y'] )
                     #print "   z = %.3fG" % ( axes['z'] )
                     camera.take_photo()
-                    #TODO AVERAGE COLOUR LED
         self.clearInterrupt()
 
     def enableInterrupt(self):

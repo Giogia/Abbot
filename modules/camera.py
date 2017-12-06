@@ -12,35 +12,38 @@ def take_photo():
   name = time.strftime("%y%m%d_%H-%M-%S") + ".jpg"
 
   #capture photo
+  neopixel.waveColorWipe(255,255,255,255,3)
   camera.start_preview()
   time.sleep(2)
   camera.capture("resources/"+ name)
   camera.stop_preview()
   print "%s captured" %name
-  neopixel.waveColorWipe(0,0,0,255,3)
-
+  colour = average_colour.average_image_colour(name)
+  print(colour)
+  neopixel.colorWipe(colour[0],colour[1],colour[2],0)
+  
   #insert photo in database
   database.insert_photo(name)
   database.conn.commit()
   print "%s inserted in database" %name
-  colour = average_image_colour(name)
-  neopixel.waveColorWipe(colour,3)
+  time.sleep(5)
+  neopixel.colorWipe(0,0,0,255)
   
 
 def set_default_settings():
   
   #default settings
-  camera.sharpness = 0
-  camera.contrast = 0
-  camera.brightness = 50
-  camera.saturation = 0
+  camera.sharpness = 2 #originally 0
+  camera.contrast = 5 #originally 0
+  camera.brightness = 55 #originally 50
+  camera.saturation = 1
   camera.ISO = 0
   camera.video_stabilization = True #originally false
   camera.exposure_compensation = 0
-  camera.exposure_mode = 'auto'
-  camera.meter_mode = 'average'
+  camera.exposure_mode = 'antishake'
+  camera.meter_mode = 'matrix'
   camera.awb_mode = 'auto'
-  camera.image_effect = 'none'
+  camera.image_effect = 'denoise'
   camera.color_effects = None
   camera.rotation = 0
   camera.hflip = True #originally false
