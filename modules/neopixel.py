@@ -156,34 +156,30 @@ class Adafruit_NeoPixel(object):
 		"""Get the 24-bit RGB color value for the LED at position n."""
 		return self._led_data[n]
 	
-	# Define functions which animate LEDs in various ways.
-def colorWipe(strip, color, wait_ms=50):
-	"""Wipe color across display a pixel at a time."""
-	for i in range(strip.numPixels()):
-		strip.setPixelColor(i, color)
-		strip.show()
-		time.sleep(wait_ms/1000.0)
 	
-	
-	# Main program logic follows:
-if __name__ == '__main__':
-	# Create NeoPixel object with appropriate configuration.
-	strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL, LED_STRIP)
-	# Intialize the library (must be called once before other functions).
-	strip.begin()
+# Define functions which animate LEDs in various ways.
+def colorWipe(G,R,B,W):
+        strip.setPixelColorRGB(0,G,R,B,W)
+	strip.setBrightness(100)
+	strip.show()
+		
+def waveColorWipe(G,R,B,W):
+        strip.setPixelColorRGB(0,G,R,B,W)
+        for i in range(3):
+                for j in range(0,255):
+                        strip.setBrightness(j)
+                        strip.show()
+                        time.sleep(0.001)
+                time.sleep(0.01)
+                for j in range(0,255):
+                        strip.setBrightness(255-j)
+                        strip.show()
+                        time.sleep(0.001)
 
-	print ('Press Ctrl-C to quit.')
-	while True:
-		# Color wipe animations.
-		colorWipe(strip, Color(255, 0, 0), 0)  # Red wipe
-		time.sleep(2)
-		colorWipe(strip, Color(0, 255, 0), 0)  # Blue wipe
-		time.sleep(2)
-		colorWipe(strip, Color(0, 0, 255), 0)  # Green wipe
-		time.sleep(2)
-		colorWipe(strip, Color(0, 0, 0, 255), 0)  # White wipe
-		time.sleep(2)
-		colorWipe(strip, Color(255, 255, 255), 0)  # Composite White wipe
-		time.sleep(2)
-		colorWipe(strip, Color(255, 255, 255, 255), 0)  # Composite White + White LED wipe
-		time.sleep(2)
+                
+	
+
+# Create NeoPixel object with appropriate configuration.
+strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL, LED_STRIP)
+# Intialize the library (must be called once before other functions).
+strip.begin()
