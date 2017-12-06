@@ -17,7 +17,7 @@ def take_photo():
   camera.capture("resources/"+ name)
   camera.stop_preview()
   print "%s captured" %name
-  neopixel.waveColor(0,0,0,255,3)
+  neopixel.waveColorWipe(0,0,0,255,3)
 
   #insert photo in database
   database.insert_photo(name)
