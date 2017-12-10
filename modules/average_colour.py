@@ -22,9 +22,9 @@ def average_image_colour(name):
             b_total += b
             count += 1
 
-    hsv = colorsys.rgb_to_hsv(r_total,g_total,b_total)
+    hsv = list(colorsys.rgb_to_hsv(r_total,g_total,b_total))
     hsv[1] = 1 #(hope)fully saturated
-    rgb = colorsys.hsv_to_rgb(hsv)
+    rgb = list(colorsys.hsv_to_rgb(hsv[0],hsv[1],hsv[2]))
     return (rgb[1], rgb[0], rgb[2]) #see r,g,b values
 
 
