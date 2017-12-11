@@ -64,8 +64,8 @@ def check_photo(photo):
             FROM photos
             WHERE photo=? AND checked=?''',(photo,True))
     return querycursor.fetchone() != None
+
      
-    
 # Return true if a word exist         
 def check_word(word):
     querycursor.execute('''SELECT *

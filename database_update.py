@@ -5,8 +5,7 @@ from modules import internet, google_vision, database, scrape
 from time import sleep
 import itertools
 import os
-
-
+    
 internet.wait_for_internet_connection()
 print "connection is up, updating database"
 
@@ -20,13 +19,13 @@ for photo in database.get_photos():
         images = google_vision.detect_web(photo) 
         print "new photo found"
         
-    for word in labels:
-        if database.check_word(word):
-            database.word_found(word)
-            existing = True
-            print "existing word found"
-            scrape.download_images([word],['high res'],1)
-            break
+        for word in labels:
+            if database.check_word(word):
+                database.word_found(word)
+                existing = True
+                print "existing word found"
+                scrape.download_images([word],['high res'],1)
+                break
         
     database.conn.commit()
         
@@ -41,6 +40,9 @@ for photo in database.get_photos():
                     continue
                 database.insert_word(label,True)
                 print "added new word: %s" % label
+                
+            else:
+                database.word_found(word)
                 
             if not database.check_label(photo,label):
                 database.insert_label(photo,label)
