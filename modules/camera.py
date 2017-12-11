@@ -2,7 +2,6 @@ import time
 import picamera
 import database, average_colour, neopixel
 
-
 camera = picamera.PiCamera()
 
 
@@ -12,21 +11,20 @@ def take_photo():
   name = time.strftime("%y%m%d_%H-%M-%S") + ".jpg"
 
   #capture photo
-  neopixel.waveColorWipe(255,255,255,255,3)
+  neopixel.colorWipe(255,0,0,40)
+  time.sleep(4)
   camera.start_preview()
-  time.sleep(2)
   camera.capture("resources/"+ name)
   camera.stop_preview()
   print "%s captured" %name
   colour = average_colour.average_image_colour(name)
   print(colour)
-  neopixel.colorWipe(colour[0],colour[1],colour[2],0)
+  #neopixel.colorWipe(colour[0],colour[1],colour[2],0)
   
   #insert photo in database
   database.insert_photo(name)
   database.conn.commit()
   print "%s inserted in database" %name
-  time.sleep(5)
   neopixel.colorWipe(0,0,0,255)
   
 

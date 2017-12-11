@@ -160,7 +160,7 @@ class Adafruit_NeoPixel(object):
 # Define functions which animate LEDs in various ways.
 def colorWipe(G,R,B,W):
         strip.setPixelColorRGB(0,G,R,B,W)
-	strip.setBrightness(100)
+	strip.setBrightness(255)
 	strip.show()
 
 def waveColorUp(G,R,B,W):
