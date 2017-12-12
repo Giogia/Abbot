@@ -1,25 +1,26 @@
-#!/usr/bin/env python2
+import socket
 
-import SocketServer
+host = ''        # Symbolic name meaning all available interfaces
+port = 12345     # Arbitrary non-privileged port
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((host, port))
 
-class MyTCPSocketHandler(SocketServer.BaseRequestHandler):
-    
+print host , port
+s.listen(1)
+conn, addr = s.accept()
+print('Connected by', addr)
+while True:
 
-    def handle(self):
-        # self.request is the TCP socket connected to the client
-        self.data = self.request.recv(1024).strip()
-        print("{} wrote:".format(self.client_address[0]))
-        print(self.data)
-        # just send back the same data, but upper-cased
-        self.request.sendall(self.data.upper())
+    try:
+        data = conn.recv(1024)
 
-if __name__ == "__main__":
-    
-    HOST, PORT = "localhost", 9999
+        if not data: break
 
-    # instantiate the server, and bind to localhost on port 9999
-    server = SocketServer.TCPServer((HOST, PORT), MyTCPSocketHandler)
+        print "Client Says: "+data
+        conn.sendall("Server Says:hi")
 
-    # activate the server
-    # this will keep running until Ctrl-C
-    server.serve_forever()
+    except socket.error:
+        print "Error Occured."
+        break
+
+conn.close()
