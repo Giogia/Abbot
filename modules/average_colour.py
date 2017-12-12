@@ -1,5 +1,4 @@
 from PIL import Image
-import matplotlib.pyplot as plt
 import colorsys
 
 #name is the image name string as follows "example.jpg"
@@ -32,9 +31,5 @@ def print_average_colour(name):
     average_colour = average_image_colour(name)
     print(average_colour)
 
-#display colour
-def display_average_colour(name):
-    average_colour = average_image_colour(name)
-    plt.imshow([[(average_colour)]])
-    plt.show
+
 

@@ -14,11 +14,11 @@ def take_photo():
   neopixel.colorWipe(255,0,0,40)
   time.sleep(4)
   camera.start_preview()
-  camera.capture("resources/"+ name)
+  camera.capture("/home/pi/Desktop/Abbot/resources/"+ name)
   camera.stop_preview()
   print "%s captured" %name
-  colour = average_colour.average_image_colour(name)
-  print(colour)
+  #colour = average_colour.average_image_colour(name)
+  #print(colour)
   #neopixel.colorWipe(colour[0],colour[1],colour[2],0)
   
   #insert photo in database

@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('./Abbot.sqlite', check_same_thread=False)
+conn = sqlite3.connect('/home/pi/Desktop/Abbot/Abbot.sqlite', check_same_thread=False)
 
 querycursor = conn.cursor()
 
