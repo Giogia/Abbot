@@ -28,12 +28,12 @@ for photo in database.get_photos():
       
     if existing == True:
 
-        add_new_word = true
+        add_new_word = True
         
         for label in labels:
             
             if not database.check_word(label):
-                if add_new_word == false:
+                if add_new_word == False:
                     continue
                 database.insert_word(label,True)
                 print "added new word: %s" % label 
@@ -45,7 +45,7 @@ for photo in database.get_photos():
                 database.insert_label(photo,label)
                 print "inserted new label"
                 scrape.download_images([label],['high res'],1)
-                add_new_word = false
+                add_new_word = False
 
         database.photo_checked(photo)
         database.conn.commit()
