@@ -25,7 +25,7 @@ def take_photo():
   database.insert_photo(name)
   database.conn.commit()
   print "%s inserted in database" %name
-  neopixel.colorWipe(0,0,0,255)
+  neopixel.colorWipe(255,255,255,0)
   
 
 def set_default_settings():
