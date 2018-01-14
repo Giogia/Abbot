@@ -186,7 +186,7 @@ def colorful_animation():
 	for i in range(0,255):
 		strip.setPixelColorRGB(0,i,255-i,i,0)
 		strip.show()
-		time.sleep(0.002)
+		time.sleep(0.003)
 		
 	
 
