@@ -14,6 +14,7 @@ for photo in database.get_photos():
     
     existing = False
     
+    #find if the photo can be added to database
     if not database.check_photo(photo):
         labels = google_vision.find_labels(photo)
         images = google_vision.detect_web(photo) 
@@ -21,25 +22,21 @@ for photo in database.get_photos():
         
         for word in labels:
             if database.check_word(word):
-                database.word_found(word)
                 existing = True
                 print "existing word found"
-                scrape.download_images([word],['high res'],1)
                 break
-        
-    database.conn.commit()
-        
+      
     if existing == True:
 
-        count = 0
+        add_new_word = true
         
         for label in labels:
             
             if not database.check_word(label):
-                if count >= 2:
+                if add_new_word == false:
                     continue
                 database.insert_word(label,True)
-                print "added new word: %s" % label
+                print "added new word: %s" % label 
                 
             else:
                 database.word_found(word)
@@ -48,8 +45,7 @@ for photo in database.get_photos():
                 database.insert_label(photo,label)
                 print "inserted new label"
                 scrape.download_images([label],['high res'],1)
-                
-            count +=1
+                add_new_word = false
 
         database.photo_checked(photo)
         database.conn.commit()
