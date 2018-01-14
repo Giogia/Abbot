@@ -96,9 +96,9 @@ def download_images(search_keyword,keywords,number_of_images):
     i= 0
     while i<len(search_keyword):
         items = []
-        iteration = "Item no.: " + str(i+1) + " -->" + " Item name = " + str(search_keyword[i])
+        iteration = "Item no.: " + str(i+1) + " - " + " item name = " + str(search_keyword[i])
         print (iteration)
-        print ("Evaluating...")
+        print ("evaluating...")
         search_keywords = search_keyword[i]
         search = search_keywords.replace(' ','%20')
 
@@ -120,7 +120,7 @@ def download_images(search_keyword,keywords,number_of_images):
             items = items + (_images_get_all_items(raw_html,number_of_images))
             j = j + 1
         #print ("Image Links = "+str(items))
-        print ("Total Image Links = "+str(len(items)))
+        print ("image Links = "+str(len(items)))
         print ("\n")
 
 
@@ -131,8 +131,8 @@ def download_images(search_keyword,keywords,number_of_images):
 
         t1 = time.time()    #stop the timer
         total_time = t1-t0   #Calculating the total time required to crawl, find and download all the links of 60,000 images
-        print("Total time taken: "+str(total_time)+" Seconds")
-        print ("Starting Download...")
+        print("total time: "+str(total_time)+" Seconds")
+        print ("starting Download...")
 
         ## To save imges to the same directory
         # IN this saving process we are just skipping the URL if there is any error
@@ -152,7 +152,7 @@ def download_images(search_keyword,keywords,number_of_images):
                 output_file.write(data)
                 response.close();
 
-                print("completed ====> "+str(k+1))
+                print("completed -> "+str(k+1))
 
                 k=k+1;
 
@@ -175,9 +175,7 @@ def download_images(search_keyword,keywords,number_of_images):
 
         i = i+1
 
-    print("\n")
-    print("Everything downloaded!")
-    print("\n"+str(errorCount)+" ----> total Errors")
+    print("\n"+str(errorCount)+" total Errors")
 
     #----End of the main program ----#
 
