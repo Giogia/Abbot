@@ -184,9 +184,9 @@ def waveColorWipe(G,R,B,W,number_of_waves):
 
 def colorful_animation():
 	values = [100,255]
-	strip.setBrightness(255)
 	waveColorWipe(255,0,0,0,1)
 	for i in range(0,10):
+		strip.setBrightness(255)
 		strip.setPixelColorRGB(0,random.choice(values),random.choice(values),random.choice(values),0)
 		strip.show()
 		time.sleep(0.3)
