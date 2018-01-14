@@ -181,7 +181,13 @@ def waveColorWipe(G,R,B,W,number_of_waves):
         time.sleep(0.01)
         waveColorDown()
 
-                
+def colorful_animation():
+	strip.setBrightness(255)
+	for i in range(0,255):
+		strip.setPixelColorRGB(0,i,255-i,i,0)
+		strip.show()
+		time.sleep(0.002)
+		
 	
 
 # Create NeoPixel object with appropriate configuration.
