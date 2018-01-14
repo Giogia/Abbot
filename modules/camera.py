@@ -10,9 +10,18 @@ def take_photo():
   #name of the photo
   name = time.strftime("%y%m%d_%H-%M-%S") + ".jpg"
 
-  #capture photo
+  #colorful animation
   neopixel.colorWipe(255,0,0,40)
-  time.sleep(4)
+  time.sleep(1)
+  neopixel.colorWipe(255,255,0,40)
+  time.sleep(1)
+  neopixel.colorWipe(100,255,255,40)
+  time.sleep(1)
+  neopixel.colorWipe(255,255,0,40)
+  time.sleep(1)
+  neopixel.colorWipe(255,0,0,40)
+  
+  #capture photo
   camera.start_preview()
   camera.capture("/home/pi/Desktop/Abbot/resources/"+ name)
   camera.stop_preview()
