@@ -8,7 +8,7 @@ accelerometer = adxl345.ADXL345(interrupt = True)
 print "ready"
 neopixel.waveColorWipe(255,0,0,255,0)
 sleep(1)
-neopixel.waveColorUp(0,0,0,255)
+neopixel.waveColorUp(255,255,255,0)
 
 try:
   while True:
