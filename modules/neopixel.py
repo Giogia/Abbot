@@ -2,7 +2,7 @@
 # Author: Tony DiCola (tony@tonydicola.com), Jeremy Garff (jer@jers.net)
 import atexit
 import time
-from random import choice
+import random
 
 import _rpi_ws281x as ws
 
@@ -183,13 +183,14 @@ def waveColorWipe(G,R,B,W,number_of_waves):
         waveColorDown()
 
 def colorful_animation():
-	values = [0,100,255]
+	values = [100,255]
 	strip.setBrightness(255)
+	waveColorWipe(255,0,0,0,1)
 	for i in range(0,10):
-		strip.setPixelColorRGB(random.choice(values),random.choice(values),random.choice(values))
+		strip.setPixelColorRGB(0,random.choice(values),random.choice(values),random.choice(values),0)
 		strip.show()
-		time.sleep(0.003)
-		
+		time.sleep(0.3)
+	waveColorWipe(255,0,0,0,1)	
 	
 
 # Create NeoPixel object with appropriate configuration.
