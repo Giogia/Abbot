@@ -2,6 +2,7 @@
 # Author: Tony DiCola (tony@tonydicola.com), Jeremy Garff (jer@jers.net)
 import atexit
 import time
+from random import choice
 
 import _rpi_ws281x as ws
 
@@ -182,9 +183,10 @@ def waveColorWipe(G,R,B,W,number_of_waves):
         waveColorDown()
 
 def colorful_animation():
+	values = [0,100,255]
 	strip.setBrightness(255)
-	for i in range(0,255):
-		strip.setPixelColorRGB(0,i,255-i,i,0)
+	for i in range(0,10):
+		strip.setPixelColorRGB(random.choice(values),random.choice(values),random.choice(values))
 		strip.show()
 		time.sleep(0.003)
 		
