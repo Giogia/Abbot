@@ -10,16 +10,7 @@ def take_photo():
   #name of the photo
   name = time.strftime("%y%m%d_%H-%M-%S") + ".jpg"
 
-  #colorful animation
-  neopixel.colorWipe(255,0,0,40)
-  time.sleep(1)
-  neopixel.colorWipe(255,255,0,40)
-  time.sleep(1)
-  neopixel.colorWipe(100,255,255,40)
-  time.sleep(1)
-  neopixel.colorWipe(255,255,0,40)
-  time.sleep(1)
-  neopixel.colorWipe(255,0,0,40)
+  neopixel.colorful_animation()
   
   #capture photo
   camera.start_preview()
