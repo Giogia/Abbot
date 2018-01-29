@@ -71,7 +71,6 @@ class ADXL345:
             if(axes['y'] > 1.8 or axes['z']> 1.7):
                 sleep(0.5)
                 if(axes['y'] > 0.8 or axes['z']> 1):
-                    #TODO WHITE LED TO SAY ITS WORKING
                     #print "ADXL345 on address 0x%x:" % (self.address)
                     #print "   x = %.3fG" % ( axes['x'] )
                     #print "   y = %.3fG" % ( axes['y'] )
