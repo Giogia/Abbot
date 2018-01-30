@@ -89,7 +89,7 @@ class ADXL345:
                 break
                           
             sleep(0.5)              
-            i++         
+            i+= 1         
                      
         self.clearInterrupt()
 
