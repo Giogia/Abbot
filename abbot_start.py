@@ -23,13 +23,15 @@ try:
     pinch = math.fabs(math.atan2(-axes['z'],math.sqrt(axes['x']*axes['x']+axes['y']*axes['y'])))
 
     if(roll+pinch>=1 and serverUp == False):
-      subprocess.Popen("python /home/pi/Desktop/Abbot/database_update.py", shell =True)
+      subprocess.Popen("lxterminal -e python /home/pi/Desktop/Abbot/database_update.py", shell =True)
       subprocess.Popen("sudo python /home/pi/Desktop/Abbot/ThreadHTTPServer.py", shell = True)
-      neopixel.colorWipe(0,0,255,0)
       serverUp = True
+      neopixel.colorWipe(0,0,255,0)
+      
         
     if(roll+pinch<=1 and serverUp == True):
       neopixel.colorWipe(255,255,255,0)
+      serverUp = False
 
     #print(roll+pinch)
     sleep(2)
