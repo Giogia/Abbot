@@ -9,8 +9,7 @@
 
 import RPi.GPIO as GPIO
 import smbus
-import camera
-import math
+import camera, neopixel
 from time import sleep
 
 # select the correct i2c bus for this revision of Raspberry Pi
@@ -67,6 +66,7 @@ class ADXL345:
 
     def handleInterrupt(self, channel):
         axes = self.getAxes(True)
+        
         if(axes['y'] > 0.8 or axes['z']> 1):
             sleep(0.3)
             if(axes['y'] > 1.8 or axes['z']> 1.7):
@@ -76,20 +76,7 @@ class ADXL345:
                     #print "   x = %.3fG" % ( axes['x'] )
                     #print "   y = %.3fG" % ( axes['y'] )
                     #print "   z = %.3fG" % ( axes['z'] )
-                    camera.take_photo()
-                    
-        roll = math.fabs(math.atan2(-axes(['y'],math.sqrt(axes['x']*axes['x']+axes['z']*axes['z'])))
-        pitch = math.fabs(math.atan2(-axes(['z'],math.sqrt(axes['x']*axes['x']+axes['y']*axes['y'])))
-       
-        for i in range(0,6):
-            if(roll+pinch>=1):
-                if i==6:
-                    #update database/activate http server
-            else
-                break
-                          
-            sleep(0.5)              
-            i+= 1         
+                    camera.take_photo()      
                      
         self.clearInterrupt()
 
