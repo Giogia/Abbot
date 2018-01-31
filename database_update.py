@@ -1,6 +1,5 @@
 #!/usr/bin/env python2
 
-
 from modules import internet, google_vision, database, scrape
 from time import sleep
 import itertools

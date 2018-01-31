@@ -1,6 +1,7 @@
+#!/usr/bin/env python2
 import io
 import os
-import os
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "home/pi/Desktop/Abbot/Abbot.json"
 
 
 # Imports the Google Cloud client library

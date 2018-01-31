@@ -4,7 +4,7 @@ import threading
 import SimpleHTTPServer
 import sys
 
-PORT = int(sys.argv[1])
+PORT = 8080
 
 Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
 
