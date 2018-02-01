@@ -44,7 +44,9 @@ for photo in database.get_photos():
                 if not database.check_label(photo,label):
                     database.insert_label(photo,label)
                     print "inserted new label"
-                    scrape.download_images([label],['high res'],3)
+                    neopixel.colorWipe(51,255,153,0)
+                    scrape.download_images([label],['high res'],1)
+                    neopixel.colorWipe(0,0,255,0)
                     add_new_word = False
 
             database.photo_checked(photo)

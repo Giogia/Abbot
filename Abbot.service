@@ -4,6 +4,8 @@ Description=Abbot Python Backend
 [Service]
 Type=simple
 ExecStart=/home/pi/Desktop/Abbot/abbot_start.py
+Restart=always
+RestartSec=3
 
 [Install]
 WantedBy=multi-user.target
