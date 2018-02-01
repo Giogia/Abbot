@@ -2,7 +2,7 @@
 Description=Abbot Python Backend
 
 [Service]
-Type=forking
+Type=simple
 ExecStart=/home/pi/Desktop/Abbot/abbot_start.py
 
 [Install]
