@@ -1,6 +1,8 @@
 # Abbot
 Advanced user interface project 2017-2018
 
+![The-ABBOT-learning-by-exploring-process](https://github.com/Giogia/Abbot/assets/9254840/b15d52e7-7038-4e33-afd5-5f2d46f59b6e)
+
 ## AVI 2018 Acceptance Paper
 
 #### ACM
